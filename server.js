@@ -56,7 +56,7 @@ app.get('/seedAgents', (req, res) => {
 });
 
 // CONNECTIONS
-mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(async () => {
+mongoose.connect(MONGO_URL).then(async () => {
   console.log('connected')
   app.listen(PORT, () => { console.log('listening at PORT:', PORT) })
 })
