@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kingsman</title>
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+  <body>
+    <!-- ====== TOP HEADER BAR ====== -->
+    <div class="header">
+      <!-- title -->
+      <div class="header-title">
+        <img src="../../img/logo.png" alt="kingsman logo">
+        <h1>KINGSMAN TAILOR</h1>
+      </div>
+      <!-- navigation -->
+      <div class="header-nav">
+        <ul>
+          <li>
+              <a href="/room">fitting room three</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">create a user</a>
+          </li>
+          <!-- add your link to the log in page here -->
+          <li></li>
+          <!-- add your form button to log out here -->
+          <li>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- ===== MAIN SPLASH PAGE CONTENT ===== -->
+    <div class="main">
+      <!-- about -->
+      <div class="main-abt">
+        <h1>Create new user</h1>
+        <form action="/users" method="POST">
+            <table>
+                <tr>
+                    <td><label for="name">Name: </label></td>
+                    <td><input type="text" name="name" placeholder="Name"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password: </label></td>
+                    <td><input type="password" name="password" placeholder="Password"></td>
+                </tr>
+                <tr>
+                    <td><label for="messages">Messages: </label></td>
+                    <td><input type="messages" name="messages" placeholder="Messages"></td>
+                </tr>
+            </table>   
+            <input style="width:auto; float: left;" type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
