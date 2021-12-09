@@ -21,6 +21,12 @@ app.use(express.json());
 app.use(express.static('public'));
 // method-override
 app.use(methodOverride("_method"));
+// session
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
 
 // CONTROLLERS
 // fitting room three
@@ -29,30 +35,29 @@ app.use('/room', roomController);
 // create user
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
+// sessions
+const sessionController = require('./controllers/sessions.js');
+app.use('/sessions', sessionController);
 
 // GET INDEX
 app.get('/', (req, res) => {
-  res.render('index.ejs', {});
+  res.render('index.ejs', {user:req.session.user});
 });
 
 
 // SEED ROUTE
 // NOTE: Do NOT run this route until AFTER you have a create user route up and running, as well as encryption working!
 const seed = require('./models/seed.js');
-// const User = require('./models/users.js');
+const User = require('./models/users.js');
 
-app.get('/seedAgents', (req, res) => {
+app.get('/seedAgents', async(req, res) => {
   // encrypts the given seed passwords
-  seed.forEach((user) => {
-    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+  seed.forEach(async(user) => {
+    user.password = await bcrypt.hash(user.password,10);
+    // seed data
+    await User.findOneAndUpdate({name:user.name},user,{upsert:true})
   });
-  // seeds the data
-  User.create(seed, (err, createdUsers) => {
-    // logs created users
-    console.log(createdUsers);
-    // redirects to index
-    res.redirect('/');
-  });
+  res.redirect('/')
 });
 
 // CONNECTIONS

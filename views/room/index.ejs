@@ -21,10 +21,19 @@
       <!-- navigation -->
       <div class="header-nav">
         <ul>
-          <!-- fitting room link -->
-          <li><a href="/room">fitting room three</a></li>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/room">fitting room three</a>
+          </li>
+          <!-- add your link to create a user here -->
+          <li>
+            <a href="/users/new">create a user</a>
+          </li>
           <!-- add your form button to log out here -->
           <li>
+            <form action="/sessions/?_method=DELETE" method="POST"><input type='submit' value='logout'/></form>
           </li>
         </ul>
       </div>
@@ -51,7 +60,7 @@
         <% users.forEach((user) => { %>
             <% user.messages.forEach((message) => { %>
               <div class="main-message">
-                <%= message %>
+                <%= user.name %>: <%= message %>
               </div>
             <% }) %>
         <% }) %>
